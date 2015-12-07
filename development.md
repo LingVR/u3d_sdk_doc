@@ -20,6 +20,20 @@
 
 只需要简单的几步就可以集成 SDK。
 
+### 0.导入 SDK
+
+* Unity 4.x
+
+	通过 Assets -> Import Package -> Custom Package 菜单导入即可
+
+* Unity 5.x
+
+	通过 Assets -> Import Package -> Custom Package 菜单导入后，需要修改两个 .so 文件的属性：
+	
+	![x86](images/x86.png)
+	
+	![x64](images/x64.png)
+
 ### 1.项目设置
 
 因为 VR 应用的特殊性，必须把设备朝向设置成 Landscape Left 。其他朝向会导致程序初始化的时候退出。
