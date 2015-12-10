@@ -20,7 +20,7 @@
 
 只需要简单的几步就可以集成 SDK。
 
-### 0.导入 SDK
+### 1.导入 SDK
 
 * Unity 4.x
 
@@ -34,7 +34,7 @@
 	
 	![x64](images/x64.png)
 
-### 1.项目设置
+### 2.项目设置
 
 因为 VR 应用的特殊性，必须把设备朝向设置成 Landscape Left 。其他朝向会导致程序初始化的时候退出。
 
@@ -52,7 +52,7 @@
 	<uses-permission android:name="com.android.example.USB_PERMISSION"/>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-### 2.添加双目相机
+### 3.添加双目相机
 
 VR 相机由 LvrManager 统一管理。只需要将 Prefabs 目录下的 LvrManager 预制体拖拽到场景中，就能看到双目效果。
 
@@ -68,7 +68,9 @@ VR 相机由 LvrManager 统一管理。只需要将 Prefabs 目录下的 LvrMana
 * Eye Texture Scale -> 调整双眼分辨率，范围为原分辨率的 0.0 ~ 1.0
 * Use Unity Remote Input -> 是否使用 [Unity Remote 4](http://docs.unity3d.com/Manual/UnityRemote4.html) 调试工具获取手机传感器数据
 
-### 3.用户交互
+### 4.用户交互
+
+#### 1.Gaze Pointer
 
 VR 眼镜属于可穿戴设备，不能使用普通的触屏事件交互。我们提供了一种 Gaze Pointer 来模拟 3D 虚拟世界中的“光标”。
 
@@ -80,7 +82,7 @@ VR 眼镜属于可穿戴设备，不能使用普通的触屏事件交互。我�
 
 ![Event System](images/eventsystem.png)
 
-注意！GazeInputModule 的 Cursor 对象要绑定到 LvrManager 预制体下的 Gaze Pointer：
+注意！`GazeInputModule` 的 Cursor 对象要绑定到 LvrManager 预制体下的 Gaze Pointer：
 
 ![Gaze Cursor](images/gazecursor.png)
 
@@ -89,3 +91,55 @@ VR 眼镜属于可穿戴设备，不能使用普通的触屏事件交互。我�
 ![UI Canvas](images/uicanvas.png)
 
 这样场景内的 UI 就能捕捉到 Gaze cusor 事件了。
+
+#### 2.手柄
+
+我们为灵境小白配置的手柄使用了安卓标准键值：
+
+|        |     |                      |
+|--------|-----|----------------------|
+| 返回键 | 4   | KEYCODE_BACK         |
+| 菜单键 | 103 | KEYCODE_BUTTON_R1    |
+| 音量+  | 24  | KEYCODE_VOLUME_UP    |
+| 音量-  | 25  | KEYCODE_VOLUME_DOWN  |
+| A键    | 96  | KEYCODE_BUTTON_A     |
+| B键    | 97  | KEYCODE_BUTTON_B     |
+| 摇杆上 | 19  | KEYCODE_DPAD_UP      |
+| 摇杆下 | 20  | KEYCODE_DPAD_DOWN    |
+| 摇杆左 | 21  | KEYCODE_DPAD_LEFT    |
+| 摇杆右 | 22  | KEYCODE_DPAD_RIGHT   |
+
+
+![joystick](images/joystick.png)
+
+注意：这里的菜单键实际映射的是 R1 键！需要在 Edit -> Project Settings -> Input 菜单里额外配置一下：
+
+![joystick](images/r1button.png)
+
+你可以通过设置绑定在 LvrManager 下的 `LvrController` 中的 `useController = true` 来启用手柄，然后获取键值的当前状态：
+
+	kv = LvrController.keyValues;
+	
+`keyValues` 是一个 `KeyValuse` 结构体，里面包含了所有键值当前状态：
+
+	public struct KeyValues
+	{
+		public bool buttonA;
+		public bool buttonB;
+		public bool buttonBack;
+		public bool buttonR1;
+		public float axisX;
+		public float axisY;
+	}
+		
+然后你就可以通过获取这些键值的状态来处理一些事件了，比如：
+
+	void Update()
+	{
+		if (kv.buttonA)
+			attack();
+		if (kv.buttonB)
+			jump();
+		if (kv.buttonBack)
+			pause();
+	}
