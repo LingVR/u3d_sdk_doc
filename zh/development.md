@@ -1,48 +1,38 @@
 # 使用 SDK
 开始使用 SDK 制作 VR 应用吧!
 
-## 内容
-
-导入 SDK 后的目录结构如下：
-
-	Assets\
-		LingVR\
-			Demo\					// demo 相关
-			Doc\					// 版本更新说明
-			Materials\				// 材质
-			Prefabs\				// 预制物体
-			Resources\				// 着色器和相关贴图
-			Scripts\				// SDK 脚本
-			Icon\					// LingVR icon
-		Plugins\					// 各个平台的动态库
-
 ## 集成步骤
 
 只需要简单的几步就可以集成 SDK。
 
 ### 1.导入 SDK
 
-* Unity 4.x
-
-	通过 Assets -> Import Package -> Custom Package 菜单导入即可
-
-* Unity 5.x
-
-	通过 Assets -> Import Package -> Custom Package 菜单导入后，需要修改两个 .so 文件的属性：
+通过 Assets -> Import Package -> Custom Package 菜单导入。
 	
-	![x86](images/x86.png)
-	
-	![x64](images/x64.png)
+导入 SDK 后的目录结构如下：
+
+	Assets\
+		LingVR\
+			Demo\					// demo 相关
+			Doc\					// 文档
+			Materials\				// 材质
+			Prefabs\				// 预制物体
+			Resources\				// 着色器和相关贴图
+			Scripts\				// SDK 脚本
+			Icon\					// LingVR icon
+		Plugins\					// 依赖的库文件
 
 ### 2.项目设置
 
-因为 VR 应用的特殊性，必须把设备朝向设置成 Landscape Left 。其他朝向会导致程序初始化的时候退出。
+0.禁用 Player setting -> Other Settings -> Virtual Reality Support
 
-同时，出于性能考虑，禁用 32-bit Display Buffer 和 24-bit Depth Buffer:
+1.因为 VR 应用的特殊性，必须把设备朝向设置成 Landscape Left 。其他朝向会导致程序初始化的时候退出。
+
+2.同时，出于性能考虑，禁用 32-bit Display Buffer 和 24-bit Depth Buffer:
 
 ![项目设置](images/settings.png)
 
-如果需要支持灵境小白 1S 的外接传感器，则要在 AndroidMenifest.xml 中添加一个服务：
+3.如果需要支持"灵境小白 2" 的外接传感器，则要在 AndroidMenifest.xml 中添加一个服务：
 
 	<service android:name="com.lingvr.sensorbox.UdService3"></service>
 	
@@ -54,18 +44,15 @@
 
 ### 3.添加双目相机
 
-VR 相机由 LvrManager 统一管理。只需要将 Prefabs 目录下的 LvrManager 预制体拖拽到场景中，就能看到双目效果。
+VR 相机由 LvrManager 统一管理。只需要将 Prefabs 目录下的 LvrManager 预制体拖拽到场景中，替换掉你游戏当前的主相机即可。
 
-在 Editor 中可以通过按住 Ctrl 或者 Alt 键拖动鼠标，模拟头部转动。
-
-别忘了移除场景中的其他相机。
+从 0.4 版本开始，不再在 Editor 的 Game view 中提供双目渲染预览。但你仍可以在 Editor 中可以通过按住 Ctrl 或者 Alt 键拖动鼠标，模拟头部转动。
 
 ![双目相机](images/stereo.png)
 
 另外 LvrManager 提供了一些参数：
 
-* Glass -> 选择适配的眼镜类型
-* Eye Texture Scale -> 调整双眼分辨率，范围为原分辨率的 0.0 ~ 1.0
+* Eye Texture Scale -> 调整双眼分辨率，范围为原分辨率的 0.0 ~ 1.0，较低的分辨率能极大的提高性能
 * Use Unity Remote Input -> 是否使用 [Unity Remote 4](http://docs.unity3d.com/Manual/UnityRemote4.html) 调试工具获取手机传感器数据
 
 ### 4.用户交互
