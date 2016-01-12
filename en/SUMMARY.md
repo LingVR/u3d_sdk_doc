@@ -2,4 +2,5 @@
 
 * [Introduction](introduction.md)
 * [VR design](design.md)
-* [Using SDK](development.md)
+* [Getting start](development.md)
+* [Release note](release.md)

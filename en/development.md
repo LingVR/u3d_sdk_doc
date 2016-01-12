@@ -1,55 +1,42 @@
 # Using SDK
 Start to use SDK making VR apps!
 
-## Content 
-
-Catalog structure is as follows after importing SDK:
-
-	Assets\
-		LingVR\
-			Demo\					
-			Doc\				
-			Materials\				
-			Prefabs\				
-			Resources\				
-			Scripts\				
-			Icon\					
-		Plugins\					
-
 ## Integration stage
 
 Only simple steps are needed to use SDK.
 
 ### 1.Importing SDK
 
-* Unity 4.x
+After importing through Assets -> Import Package -> Custom Package, you will see the SDK structure:
 
-	Importing through Assets -> Import Package -> Custom Package
-
-* Unity 5.x
-
-	After importing through Assets -> Import Package -> Custom Package, two property of .so file need to be modified:
-	
-	![x86](images/x86.png)
-	
-	![x64](images/x64.png)
+	Assets\
+		LingVR\
+			Demo\				// demo scene
+			Doc\				// where is the documents
+			Materials\		    //
+			Prefabs\				
+			Resources\				
+			Scripts\				
+			Icon\					
+		Plugins\				// Android Java and native libraries	
 
 ### 2.Project settings
 
-Because of the speciallity of VR apps, the device orientations should be set as Landscape Left. Other orientations will cause exit programme when initializing.
-At the same time, based on performance concerns, 32-bit Display Buffer and 24-bit Depth Buffer are prohibited:
+* Disable `Player setting -> Other Settings -> Virtual Reality Support`
 
-![Project settings](images/settings.png)
+* Set device oreitation to "Landscape Left"
 
-If you need support of using LING BAI 2's external sensor, a service should be added in AndroidMenifest.xml:
+* Disable `32-bit Display Buffer` and `24-bit Depth` to improve performance
 
-	<service android:name="com.lingvr.sensorbox.UdService3"></service>
-	
-and three authorities also needed：
+    ![Project settings](images/settings.png)
 
-	<uses-feature android:name="android.hardware.usb.host" />
-	<uses-permission android:name="com.android.example.USB_PERMISSION"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+* Add following settings to AndroidMenifest.xml:
+
+        <service android:name="com.lingvr.sensorbox.UdService3"></service>
+    
+        <uses-feature android:name="android.hardware.usb.host" />
+    	<uses-permission android:name="com.android.example.USB_PERMISSION"/>
+    	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 ### 3.Adding binocular camera
 
