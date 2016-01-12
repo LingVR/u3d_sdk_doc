@@ -48,8 +48,6 @@ VR 相机由 LvrManager 统一管理。只需要将 Prefabs 目录下的 LvrMana
 
 从 0.4 版本开始，不再在 Editor 的 Game view 中提供双目渲染预览。但你仍可以在 Editor 中可以通过按住 Ctrl 或者 Alt 键拖动鼠标，模拟头部转动。
 
-![双目相机](images/stereo.png)
-
 另外 LvrManager 提供了一些参数：
 
 * Eye Texture Scale -> 调整双眼分辨率，范围为原分辨率的 0.0 ~ 1.0，较低的分辨率能极大的提高性能
@@ -57,31 +55,9 @@ VR 相机由 LvrManager 统一管理。只需要将 Prefabs 目录下的 LvrMana
 
 ### 4.用户交互
 
-#### 1.Gaze Pointer
+#### 手柄
 
-VR 眼镜属于可穿戴设备，不能使用普通的触屏事件交互。我们提供了一种 Gaze Pointer 来模拟 3D 虚拟世界中的“光标”。
-
-这个 3D 光标在 GazeInputModule.cs 脚本中实现，它是 Unity Input Module 的一个拓展。
-
-使用时，先在场景中通过 GameObject -> UI -> Event System 创建一个 EventSystem 对象，
-
-为这个对象添加 GazeImputModule.cs 脚本:
-
-![Event System](images/eventsystem.png)
-
-注意！`GazeInputModule` 的 Cursor 对象要绑定到 LvrManager 预制体下的 Gaze Pointer：
-
-![Gaze Cursor](images/gazecursor.png)
-
-另外，要使场景内的 UI 能够响应 Gaze Pointer 事件，需要把该 UI 所处的 Canvas 的 EventCamera 指定到 LvrManager 预制体的 MainCamera：
-
-![UI Canvas](images/uicanvas.png)
-
-这样场景内的 UI 就能捕捉到 Gaze cusor 事件了。
-
-#### 2.手柄
-
-我们为灵境小白配置的手柄使用了安卓标准键值：
+我们为灵境小白配置的手柄（通过蓝牙连接到安卓手机）使用了安卓标准键值：
 
 |        |     |                      |
 |--------|-----|----------------------|

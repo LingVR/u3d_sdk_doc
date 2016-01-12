@@ -13,7 +13,7 @@ SDK 需要配合 Windows 版本的 Unity 使用，目前仅支持 Android 系统
 
 * Unity
 
-	要求 Unity 4.6.9 （windows 版本）或更高版本
+	要求 Unity 5.3 （Mac/Windows）更高版本
 
 * Android
 

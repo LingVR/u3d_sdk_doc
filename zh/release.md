@@ -18,10 +18,10 @@
 
 * 删除以下目录和文件：
 
-    LingVR\
-    Plugins\x86\
-    Plugins\x86_64\
-    Plugins\Android\libRenderingPlugin.so
+        LingVR\
+        Plugins\x86\
+        Plugins\x86_64\
+        Plugins\Android\libRenderingPlugin.so
     
 * 导入 0.4 版本的 SDK
     
