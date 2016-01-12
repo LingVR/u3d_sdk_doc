@@ -24,23 +24,21 @@
 
 ### 2.项目设置
 
-0.禁用 Player setting -> Other Settings -> Virtual Reality Support
+* 禁用 Player setting -> Other Settings -> Virtual Reality Support
 
-1.因为 VR 应用的特殊性，必须把设备朝向设置成 Landscape Left 。其他朝向会导致程序初始化的时候退出。
+* 因为 VR 应用的特殊性，必须把设备朝向设置成 Landscape Left 。其他朝向会导致程序初始化的时候退出。
 
-2.同时，出于性能考虑，禁用 32-bit Display Buffer 和 24-bit Depth Buffer:
+* 同时，出于性能考虑，禁用 32-bit Display Buffer 和 24-bit Depth Buffer:
 
-![项目设置](images/settings.png)
+    ![项目设置](images/settings.png)
 
-3.如果需要支持"灵境小白 2" 的外接传感器，则要在 AndroidMenifest.xml 中添加一个服务：
+* 如果需要支持"灵境小白 2" 的外接传感器，则要在 AndroidMenifest.xml 中添加一个服务和三个权限：
 
-	<service android:name="com.lingvr.sensorbox.UdService3"></service>
-	
-和三个权限：
-
-	<uses-feature android:name="android.hardware.usb.host" />
-	<uses-permission android:name="com.android.example.USB_PERMISSION"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+        <service android:name="com.lingvr.sensorbox.UdService3"></service>
+    
+    	<uses-feature android:name="android.hardware.usb.host" />
+    	<uses-permission android:name="com.android.example.USB_PERMISSION"/>
+    	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 ### 3.添加双目相机
 
