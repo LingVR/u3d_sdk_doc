@@ -22,7 +22,7 @@ Applications should run closely to 60 Fps. Higher frame rate will effectively av
 
 ### Scene
 
-Best limit the scene within:
+Per scene targets:
 
 * 50,000 ~ 100,000 triangles
 * 50,000 ~ 100,000 vertex

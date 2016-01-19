@@ -47,23 +47,30 @@ After importing through Assets -> Import Package -> Custom Package, you will see
     	<uses-permission android:name="com.android.example.USB_PERMISSION"/>
     	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-### 3.Adding binocular camera
+### 3.Replace your cameras with VR cameras
 
-VR cameras are under management of LvrManager. You could see binocular effect by just drag the LvrManager prefabricated object under Prefabs catalog into the scene. 
+In LingVR SDK, VR cameras are under management of LvrManager, see the LvrManager prefab in `LingVR/Prefabs`
 
-You can simulate head rolling by holding Ctrl/ALT and draging cursor.
+    LvrManager
+        LeftEye
+        Center
+        RightEye
 
-Do not forget to remove other cameras in the scene.
+After dragging the `LvrManager` prefab into the scene and remove other cameras, you will get a game scene which support
+LingVR, that's it. Then build the scene into apk to see if it works fine on android devices.
 
-![Binocular camera](images/stereo.png)
+In editor, you can simulate head-rolling/look-around by holding Ctrl/ALT and moving cursor.
 
 also LvrManager provides some parameters:
 
-* Glass -> to choose which mobile headset that you are developing;
 * Eye Texture Scale -> adjusting eye resolution, ranged from 0.0 ~ 1.0;
-* Use Unity Remote Input -> whether to use [Unity Remote 4](http://docs.unity3d.com/Manual/UnityRemote4.html) adjusting tool to acquire phone sensor data.
+* Use Unity Remote Input -> whether to use [Unity Remote 4](http://docs.unity3d.com/Manual/UnityRemote4.html) to acquire phone sensor data.
 
-### 4.User interactions
+### 4.Complete VR Game
+
+There's still a important problems to be solved to make a complete VR game:
+
+> How does the player interact with the game scene?
 
 #### 1.Gaze Pointer
 
