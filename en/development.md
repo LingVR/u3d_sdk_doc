@@ -22,13 +22,22 @@ After importing through Assets -> Import Package -> Custom Package, you will see
 
 ### 2.Project settings
 
-* Disable `Player setting -> Other Settings -> Virtual Reality Support`
+#### Resolution and Presentation
 
-* Set device oreitation to "Landscape Left"
+* Set default oreitation to "Landscape Left"
+* Uncheck `32-bit Display Buffer` if your project has performance issures
 
-* Disable `32-bit Display Buffer` and `24-bit Depth` to improve performance
+#### Other Settings
+
+* Check `Multithreaded Rendering`
+* Uncheck `Auto Graphics API`, and use `OpenGLES3` **only**
+* Uncheck `Player setting -> Other Settings -> Virtual Reality Support` ( Avoid conflicts with other VR support )
+* Set `Minimum API Level` to `Android 4.4 'Kit Kat'(API level 19)`
+* Others are optional, see:
 
     ![Project settings](images/settings.png)
+
+#### AndroidMenifest.xml
 
 * Add following settings to AndroidMenifest.xml:
 
