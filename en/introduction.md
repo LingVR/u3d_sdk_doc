@@ -13,7 +13,7 @@ SDK need to be used by Unity on Windows. Its product currently only supports for
 
 * Unity
 
-	Require Unity 4.6.9 (Windows version) or higher
+	Require Unity 5.3+
 
 * Android
 

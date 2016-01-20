@@ -74,25 +74,7 @@ There's still a important problems to be solved to make a complete VR game:
 
 #### 1.Gaze Pointer
 
-VR headset is a wearable device that can and should not interact with touch screen. We provide a Gaze Pointer to simulate "cursor" in 3D virtual world.
-
-This 3D cursor can be realized in GazeInputModule.cs script which is a expansion of Unity Input Module.
-
-You can create a EventSystem target through GameObject -> UI -> Event System in the scene when applying,
-
-How to add GazeImputModule.cs script:
-
-![Event System](images/eventsystem.png)
-
-Attention！The Cursor target `GazeInputModule` need to bound with Gaze Pointer LvrManager prefabricated object
-
-![Gaze Cursor](images/gazecursor.png)
-
-In addition, UI in the scene can react with Gaze Pointer event when pointing the EventCamera of the Canvas of this UI to MainCamera of LvrManager prefabricated object:
-
-![UI Canvas](images/uicanvas.png)
-
-In this way can UI in the scene capture the Gaze cusor event.
+See the [demo project](http://www.lingvr.com/sdk/sdk.html) for more details
 
 #### 2.Controller
 
