@@ -1,3 +1,21 @@
+# v0.4.2
+
+### Fix
+
+* Crash on Samsung Galaxy S6
+
+### Improvement
+
+* Improve gyroscope stablity
+
+### Upgrade from 0.4.1 to v0.4.2
+
+* Import and overwrite
+
+### Known issures
+
+* Resume from background on Xiaomi MIUI will get a black-screen
+
 # v0.4.1
 
 ### Fix
