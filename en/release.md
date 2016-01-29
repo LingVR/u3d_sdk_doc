@@ -8,7 +8,7 @@
 
 * Improve gyroscope stablity
 
-### Upgrade from 0.4.1 to v0.4.2
+### Upgrade from v0.4.1 to v0.4.2
 
 * Import and overwrite
 
