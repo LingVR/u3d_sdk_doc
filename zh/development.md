@@ -51,7 +51,76 @@ VR 相机由 LvrManager 统一管理。只需要将 Prefabs 目录下的 LvrMana
 * Eye Texture Scale -> 调整双眼分辨率，范围为原分辨率的 0.0 ~ 1.0，较低的分辨率能极大的提高性能
 * Use Unity Remote Input -> 是否使用 [Unity Remote 4](http://docs.unity3d.com/Manual/UnityRemote4.html) 调试工具获取手机传感器数据
 
-### 4.用户交互
+### 4.iOS
+
+iOS 的集成还需要把 VR 组件添加到 Unity 相关类里面：
+
+* UnityAppController.h
+
+
+	// 添加
+	`#import "VrView.h"`
+	`#import "VrRenderer.h"`
+
+	@interface UnityAppController : NSObject<UIApplicationDelegate>
+	{
+    	UIView*                _snapshotView;
+    	// 添加
+    	VrView*             _vrView;
+    	VrRenderer*         _vrRenderer;
+	}
+
+	@property (readonly, copy, nonatomic) UIView*                rootView;
+	// 添加
+	@property (readonly, copy, nonatomic) VrView*                vrView;
+
+* UnityAppController.mm
+
+
+	@synthesize rootView                = _rootView;
+	// 添加
+	@synthesize vrView                  = _vrView;
+
+* UnityAppController+Rendering.mm
+
+
+	extern "C" void UnityRepaint()
+	{
+    	...
+    	UnityEndFrame();
+    	// 添加
+    	[GetAppController().vrView display];
+    	...
+	}
+
+* UnityAppController+ViewHandling.mm
+
+
+	-(void)showGameUI
+	{
+    	...
+    	// UI hierarchy
+    	[_window addSubview: _rootView];
+    	_window.rootViewController = _rootController;
+    	[_window bringSubviewToFront:_rootView];
+
+    	// 添加
+    	_vrView = [[VrView alloc]initWithFrame: CGRectMake(0, 0, 750, 1134)];
+    	[_vrView setBackgroundColor:[UIColor blackColor]];
+    	[_window addSubview:_vrView];
+    	[_window bringSubviewToFront:_vrView];
+    	// 添加
+    	_vrRenderer = [VrRenderer new];
+    	_vrView.delegate = _vrRenderer;
+    	[_vrRenderer configure:_vrView];
+    	...
+	}
+
+
+最后记得添加 GLKit 和 Metal framework
+
+
+### 5.用户交互
 
 #### 手柄
 
